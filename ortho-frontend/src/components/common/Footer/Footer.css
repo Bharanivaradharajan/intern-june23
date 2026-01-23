@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+
+.footer {
+  font-family: "Cal Sans", sans-serif;
+  background: linear-gradient(180deg, #f9fbfd 0%, #ffffff 100%);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 60px;
+}
+
+/* Top Section */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 40px 60px;
+}
+
+.footer-column h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.footer-column p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #475569;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-column li:hover {
+  color: #0284c7;
+}
+
+/* Bottom Section */
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  padding: 14px;
+  color: #64748b;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    text-align: center;
+  }
+}

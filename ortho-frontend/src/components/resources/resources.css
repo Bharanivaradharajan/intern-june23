@@ -1,0 +1,333 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --accent: #38bdf8;
+  --accent-dark: #0284c7;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --border-soft: rgba(15, 23, 42, 0.08);
+}
+
+/* =========================
+   TABS
+========================= */
+.resource-tabs {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.resource-tabs button {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.resource-tabs button:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.resource-tabs .active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.35);
+}
+
+/* =========================
+   SEARCH
+========================= */
+.resource-search {
+  width: 100%;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  padding: 14px 16px;
+  margin-bottom: 32px;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-search::placeholder {
+  color: var(--text-muted);
+}
+
+.resource-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+/* =========================
+   GRID
+========================= */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* =========================
+   CARD
+========================= */
+.resource-card {
+  font-family: "Space Grotesk", sans-serif;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(56, 189, 248, 0.15),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
+.resource-card:hover::before {
+  opacity: 1;
+}
+
+/* Title */
+.resource-card h4 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 14px 0 8px;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+/* Subtitle / Author */
+.resource-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 6px;
+}
+
+/* Meta */
+.resource-card small {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* =========================
+   BADGE
+========================= */
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-dark);
+  display: inline-block;
+  letter-spacing: 0.4px;
+}
+/* Book Image */
+.book-image-wrapper {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.resource-card:hover .book-image {
+  transform: scale(1.05);
+}
+.resource-card.clickable {
+  cursor: pointer;
+}
+
+.resource-card.clickable:focus {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+/* STICKY CONTROLS */
+.resource-controls {
+  position: sticky;
+  top: 0;
+  background: #f9fbfd;
+  padding-bottom: 16px;
+  z-index: 10;
+}
+
+.resource-controls-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* SORT */
+.resource-sort {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* HOVER CTA */
+.card-cta {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0284c7;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.resource-card:hover .card-cta {
+  opacity: 1;
+}
+
+/* EMPTY STATE */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.empty-state span {
+  font-size: 32px;
+}
+
+/* SKELETON */
+.skeleton {
+  pointer-events: none;
+}
+
+.skeleton-box {
+  height: 160px;
+  border-radius: 12px;
+  background: #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.skeleton-line {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* CARD */
+.resource-card {
+  position: relative;
+  padding: 18px;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* BOOK IMAGE */
+.book-image-wrapper {
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.book-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CTA */
+.card-cta {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0284c7;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.resource-card:hover .card-cta {
+  opacity: 1;
+}
+
+/* EMPTY STATE */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+/* SKELETON */
+.skeleton-box {
+  height: 160px;
+  background: #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.skeleton-line {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
