@@ -162,3 +162,31 @@
   background: linear-gradient(90deg, #38bdf8, #0284c7);
   transform: translateX(-50%);
 }
+/* Blogs Strip under navbar */
+.blogs-strip {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background: #f8fafc;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.blogs-link,
+.blogs-active {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.blogs-link:hover {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.blogs-active {
+  background: linear-gradient(90deg, #d3e3eb, #0284c7);
+  color: white;
+}

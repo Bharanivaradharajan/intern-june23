@@ -31,18 +31,52 @@ const Header = () => {
       <nav className="header-nav">
         <ul>
           <li>
-            <NavLink to="/resources" className={({ isActive }) => isActive ? "active" : ""}>
+            <NavLink
+              to="/resources"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Resources
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/doctors" className={({ isActive }) => isActive ? "active" : ""}>
+            <NavLink
+              to="/doctors"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Doctors
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/implants"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Implants
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/devices"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Devices
             </NavLink>
           </li>
         </ul>
       </nav>
+
+      {/* ✅ BLOGS OPTION UNDER NAVBAR (SINGLE) */}
+      <div className="blogs-strip">
+        <NavLink
+          to="/blog/orthopedic-materials-market"
+          className={({ isActive }) => (isActive ? "blogs-active" : "blogs-link")}
+        >
+          📝 Blogs / Insights →
+        </NavLink>
+      </div>
     </header>
   );
 };

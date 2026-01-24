@@ -12,11 +12,10 @@ const DoctorsPage = () => {
     return () => clearTimeout(t);
   }, []);
 
-  const cities = ["All", ...new Set(doctorsData.map(d => d.city))];
+  const cities = ["All", ...new Set(doctorsData.map((d) => d.city))];
 
   return (
     <>
-      {/* PAGE + SHARED STYLES (INLINE, SINGLE FILE) */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
 
@@ -24,6 +23,8 @@ const DoctorsPage = () => {
         .doctors-page {
           width: 100%;
           font-family: "Space Grotesk", sans-serif;
+          background-color: #f9fbfd;
+          min-height: 100vh;
         }
 
         .doctors-container {
@@ -32,7 +33,6 @@ const DoctorsPage = () => {
           padding: 24px 16px;
         }
 
-        /* TITLE */
         .doctors-title {
           font-size: 28px;
           font-weight: 700;
@@ -53,7 +53,7 @@ const DoctorsPage = () => {
           position: sticky;
           top: 0;
           background: #f9fbfd;
-          padding-bottom: 16px;
+          padding: 8px 0 20px 0;
           z-index: 10;
         }
 
@@ -63,7 +63,6 @@ const DoctorsPage = () => {
           max-width: 900px;
         }
 
-        /* INPUT + SELECT (VISIBILITY FIX) */
         .doctor-input,
         .doctor-select {
           width: 100%;
@@ -75,76 +74,136 @@ const DoctorsPage = () => {
           font-size: 14px;
           font-family: "Space Grotesk", sans-serif;
           outline: none;
-        }
-
-        .doctor-input::placeholder {
-          color: #94a3b8;
-        }
-
-        .doctor-select option {
-          color: #0f172a;
-          background-color: #ffffff;
+          transition: all 0.2s;
         }
 
         .doctor-input:focus,
         .doctor-select:focus {
           border-color: #38bdf8;
-          box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+          box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
         }
 
-        /* SHARED GRID (USED BY DoctorList) */
+        /* GRID & CARDS */
         .resource-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 24px;
         }
 
-        /* EMPTY STATE */
+        .resource-card {
+          background: #ffffff;
+          border-radius: 16px;
+          border: 1px solid #e2e8f0;
+          overflow: hidden;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .resource-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        /* IMAGE STYLES */
+        .doctor-image-wrapper {
+          position: relative;
+          width: 100%;
+          height: 220px;
+          background: #f1f5f9;
+          overflow: hidden;
+        }
+
+        .doctor-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .resource-card:hover .doctor-card-img {
+          transform: scale(1.08);
+        }
+
+        /* BADGE OVER IMAGE */
+        .badge {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(4px);
+          padding: 4px 10px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 600;
+          color: #0369a1;
+          border: 1px solid rgba(56, 189, 248, 0.2);
+          z-index: 2;
+        }
+
+        /* CARD CONTENT */
+        .card-content {
+          padding: 18px;
+        }
+
+        .resource-card h4 {
+          margin: 0 0 4px 0;
+          font-size: 18px;
+          color: #0f172a;
+        }
+
+        .resource-card p {
+          margin: 0 0 8px 0;
+          color: #38bdf8;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        .resource-card small {
+          display: block;
+          color: #64748b;
+          font-size: 13px;
+          margin-bottom: 16px;
+        }
+
+        .card-cta {
+          font-weight: 600;
+          font-size: 14px;
+          color: #0284c7;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        /* PAGINATION & EMPTY STATE */
         .empty-state {
           text-align: center;
           padding: 60px 20px;
           color: #64748b;
         }
 
-        .empty-state span {
-          font-size: 32px;
-          display: block;
-          margin-bottom: 8px;
-        }
-
-        /* PAGINATION (USED BY DoctorList) */
         .pagination {
           display: flex;
           justify-content: center;
           gap: 8px;
-          margin: 32px 0;
+          margin: 40px 0;
         }
 
         .pagination button {
-          padding: 8px 12px;
+          padding: 10px 16px;
           border-radius: 8px;
           border: 1px solid #e2e8f0;
           background: #ffffff;
-          font-size: 13px;
           font-family: "Space Grotesk", sans-serif;
           cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .pagination button:hover:not(:disabled) {
-          background: #e0f2fe;
-          border-color: #38bdf8;
+          transition: all 0.2s;
         }
 
         .pagination button.active {
-          background: linear-gradient(90deg, #38bdf8, #0284c7);
-          color: #ffffff;
-          border-color: transparent;
-        }
-
-        .pagination button:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
+          background: #0284c7;
+          color: white;
+          border-color: #0284c7;
         }
       `}</style>
 

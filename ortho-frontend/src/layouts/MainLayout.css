@@ -19,4 +19,8 @@ body,
   scroll-behavior: smooth;
   padding: 24px;
   background: #f9fbfd;
+  .layout, .content {
+  overflow-x: hidden;
+}
+
 }

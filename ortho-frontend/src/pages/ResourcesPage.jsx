@@ -7,6 +7,8 @@ import booksData from "../data/booksData";
 import articlesData from "../data/articlesData";
 import pubmedData from "../data/pubmedData";
 
+
+
 const ResourcesPage = () => {
   const [activeTab, setActiveTab] = useState("Books");
   const [search, setSearch] = useState("");
@@ -163,6 +165,7 @@ const ResourcesPage = () => {
           <p className="resources-subtitle">
             Books, research articles, and PubMed papers for orthopedic learning.
           </p>
+          
 
           {/* STICKY CONTROLS */}
           <div className="resource-controls">

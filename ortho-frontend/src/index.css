@@ -13,3 +13,6 @@ body {
   background-color: #050505;
   color: white;
 }
+html, body {
+  overflow-x: hidden;
+}
