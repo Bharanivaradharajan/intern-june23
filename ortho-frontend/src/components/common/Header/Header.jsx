@@ -65,6 +65,16 @@ const Header = () => {
               Devices
             </NavLink>
           </li>
+
+          {/* ✅ NEW INSIGHTS OPTION */}
+          <li>
+            <NavLink
+              to="/insights"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Insights
+            </NavLink>
+          </li>
         </ul>
       </nav>
 
@@ -72,9 +82,11 @@ const Header = () => {
       <div className="blogs-strip">
         <NavLink
           to="/blog/orthopedic-materials-market"
-          className={({ isActive }) => (isActive ? "blogs-active" : "blogs-link")}
+          className={({ isActive }) =>
+            isActive ? "blogs-active" : "blogs-link"
+          }
         >
-          📝 Blogs / Insights →
+          📝 Blogs →
         </NavLink>
       </div>
     </header>

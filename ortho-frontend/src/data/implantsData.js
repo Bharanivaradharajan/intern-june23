@@ -7,7 +7,7 @@ const implantsData = [
     description:
       "Specialized implants and instruments designed for fracture fixation and orthopedic reconstruction in animals.",
     image: "/src/assets/implants/veterinary-implants-instruments.jpg",
-    viewUrl: "/implants/veterinary-implants-instruments",
+    viewUrl: "https://www.orthopaedic-implants.com/",
   },
   {
     id: 2,

@@ -6,9 +6,7 @@ import DoctorsPage from "./pages/DoctorsPage";
 import ImplantsPage from "./pages/ImplantsPage";
 import DevicesPage from "./pages/DevicesPage";
 import OrthopedicMaterialsMarketPage from "./pages/OrthopedicMaterialsMarketPage";
-
-
-
+import InsightsPage from "./pages/InsightsPage"; // ✅ ADD THIS
 
 function App() {
   return (
@@ -20,7 +18,13 @@ function App() {
           <Route path="/doctors" element={<DoctorsPage />} />
           <Route path="/implants" element={<ImplantsPage />} />
           <Route path="/devices" element={<DevicesPage />} />
-          <Route path="/blog/orthopedic-materials-market" element={<OrthopedicMaterialsMarketPage />} />
+          <Route
+            path="/blog/orthopedic-materials-market"
+            element={<OrthopedicMaterialsMarketPage />}
+          />
+
+          {/* ✅ NEW INSIGHTS DASHBOARD */}
+          <Route path="/insights" element={<InsightsPage />} />
         </Routes>
       </MainLayout>
     </Router>

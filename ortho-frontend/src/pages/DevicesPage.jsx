@@ -185,39 +185,47 @@ const DevicesPage = () => {
         }
 
         .pagination {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-          margin: 32px 0;
-        }
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 32px 0;
+}
 
-        .pagination button {
-          padding: 8px 12px;
-          border-radius: 8px;
-          border: 1px solid #e2e8f0;
-          background: #ffffff;
-          font-size: 13px;
-          font-family: "Space Grotesk", sans-serif;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
+.pagination button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  /* FIX: Ensure standard numbers are dark navy */
+  color: #0f172a; 
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-        .pagination button:hover:not(:disabled) {
-          background: #e0f2fe;
-          border-color: #38bdf8;
-        }
+.pagination button:hover:not(:disabled) {
+  background: #f0f9ff;
+  border-color: #38bdf8;
+  color: #0284c7;
+}
 
-        .pagination button.active {
-          background: linear-gradient(90deg, #38bdf8, #0284c7);
-          color: #ffffff;
-          border-color: transparent;
-        }
+.pagination button.active {
+  background: linear-gradient(90deg, #38bdf8, #0284c7);
+  /* FIX: Pure white text for the active blue background */
+  color: #ffffff; 
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+}
 
-        .pagination button:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-        }
-
+.pagination button:disabled {
+  opacity: 0.4;
+  color: #94a3b8;
+  cursor: not-allowed;
+  border-color: #f1f5f9;
+}
         /* Skeleton */
         .skeleton {
           pointer-events: none;

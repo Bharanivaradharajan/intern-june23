@@ -12,14 +12,23 @@ const DoctorsPage = () => {
     return () => clearTimeout(t);
   }, []);
 
+  const filteredData = doctorsData.filter((doc) => {
+    const searchTerm = search.toLowerCase().trim();
+    const matchesSearch = 
+      (doc.name?.toLowerCase().includes(searchTerm)) || 
+      (doc.speciality?.toLowerCase().includes(searchTerm)) ||
+      (doc.hospital?.toLowerCase().includes(searchTerm));
+    const matchesCity = city === "All" || doc.city === city;
+    return matchesSearch && matchesCity;
+  });
+
   const cities = ["All", ...new Set(doctorsData.map((d) => d.city))];
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-        /* PAGE BASE */
         .doctors-page {
           width: 100%;
           font-family: "Space Grotesk", sans-serif;
@@ -30,219 +39,116 @@ const DoctorsPage = () => {
         .doctors-container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px 16px;
+          padding: 60px 16px;
         }
 
-        .doctors-title {
-          font-size: 28px;
+        /* TITLE SECTION */
+        .title-group {
+          margin-bottom: 10px;
+        }
+
+        .doctors-main-title {
+          font-size: 36px;
           font-weight: 700;
           color: #0f172a;
-          margin-bottom: 6px;
+          margin: 0;
+          position: relative;
+          display: inline-block;
         }
 
-        .doctors-subtitle {
-          font-size: 15px;
+        /* BLUE UNDERLINE ACCENT */
+        .doctors-main-title::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -8px;
+          width: 60px;
+          height: 4px;
+          background-color: #0284c7;
+          border-radius: 2px;
+        }
+
+        .doctors-main-subtitle {
+          margin-top: 18px;
+          font-size: 16px;
           color: #64748b;
-          margin-bottom: 28px;
-          max-width: 720px;
-          line-height: 1.6;
+          max-width: 600px;
         }
 
-        /* STICKY FILTER BAR */
+        /* SEARCH BAR VISIBILITY */
         .doctor-controls {
           position: sticky;
-          top: 0;
-          background: #f9fbfd;
-          padding: 8px 0 20px 0;
+          top: 20px;
+          background: #ffffff;
+          padding: 16px;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
           z-index: 10;
-        }
-
-        .doctor-filters {
-          display: flex;
-          gap: 12px;
-          max-width: 900px;
-        }
-
-        .doctor-input,
-        .doctor-select {
-          width: 100%;
-          padding: 12px 14px;
-          border-radius: 10px;
+          margin-bottom: 32px;
           border: 1px solid #e2e8f0;
-          background-color: #ffffff;
-          color: #0f172a;
-          font-size: 14px;
-          font-family: "Space Grotesk", sans-serif;
-          outline: none;
-          transition: all 0.2s;
         }
 
-        .doctor-input:focus,
-        .doctor-select:focus {
-          border-color: #38bdf8;
-          box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
-        }
+        .doctor-filters { display: flex; gap: 12px; }
 
-        /* GRID & CARDS */
-        .resource-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 24px;
-        }
-
-        .resource-card {
-          background: #ffffff;
-          border-radius: 16px;
-          border: 1px solid #e2e8f0;
-          overflow: hidden;
-          cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .resource-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        /* IMAGE STYLES */
-        .doctor-image-wrapper {
-          position: relative;
-          width: 100%;
-          height: 220px;
-          background: #f1f5f9;
-          overflow: hidden;
-        }
-
-        .doctor-card-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-
-        .resource-card:hover .doctor-card-img {
-          transform: scale(1.08);
-        }
-
-        /* BADGE OVER IMAGE */
-        .badge {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          background: rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(4px);
-          padding: 4px 10px;
-          border-radius: 20px;
-          font-size: 12px;
-          font-weight: 600;
-          color: #0369a1;
-          border: 1px solid rgba(56, 189, 248, 0.2);
-          z-index: 2;
-        }
-
-        /* CARD CONTENT */
-        .card-content {
-          padding: 18px;
-        }
-
-        .resource-card h4 {
-          margin: 0 0 4px 0;
-          font-size: 18px;
-          color: #0f172a;
-        }
-
-        .resource-card p {
-          margin: 0 0 8px 0;
-          color: #38bdf8;
-          font-weight: 500;
-          font-size: 14px;
-        }
-
-        .resource-card small {
-          display: block;
-          color: #64748b;
-          font-size: 13px;
-          margin-bottom: 16px;
-        }
-
-        .card-cta {
-          font-weight: 600;
-          font-size: 14px;
-          color: #0284c7;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-
-        /* PAGINATION & EMPTY STATE */
-        .empty-state {
-          text-align: center;
-          padding: 60px 20px;
-          color: #64748b;
-        }
-
-        .pagination {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-          margin: 40px 0;
-        }
-
-        .pagination button {
-          padding: 10px 16px;
+        .doctor-input, .doctor-select {
+          padding: 12px 16px;
           border-radius: 8px;
-          border: 1px solid #e2e8f0;
-          background: #ffffff;
+          border: 2px solid #e2e8f0;
           font-family: "Space Grotesk", sans-serif;
-          cursor: pointer;
-          transition: all 0.2s;
+          font-size: 15px;
+          outline: none;
+          background-color: #ffffff !important;
+          color: #0f172a !important; /* Forces dark text */
         }
 
-        .pagination button.active {
-          background: #0284c7;
-          color: white;
-          border-color: #0284c7;
+        .doctor-input::placeholder { color: #94a3b8; }
+        .doctor-input { flex: 2; }
+        .doctor-select { flex: 1; cursor: pointer; }
+        .doctor-input:focus { border-color: #0284c7; }
+
+        @media (max-width: 768px) {
+          .doctor-filters { flex-direction: column; }
         }
       `}</style>
 
       <div className="doctors-page">
         <div className="doctors-container">
-          <h2 className="doctors-title">Doctors</h2>
-          <p className="doctors-subtitle">
-            Find orthopedic specialists by name, specialization, or city.
-          </p>
-
+          <div className="title-group">
+            <h1 className="doctors-main-title">Leading Orthopedic Doctors in India</h1>
+            <p className="doctors-main-subtitle">
+              Connect with India's leading orthopedic surgeons and joint replacement specialists.
+            </p>
+          </div>
+          
           <div className="doctor-controls">
             <div className="doctor-filters">
               <input
                 className="doctor-input"
-                placeholder="Search doctor or specialization..."
+                placeholder="Search by name, hospital, or specialty..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-
               <select
                 className="doctor-select"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               >
                 {cities.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
+                  <option key={c} value={c}>{c}</option>
                 ))}
               </select>
             </div>
           </div>
 
-          <DoctorList
-            data={doctorsData}
-            search={search}
-            city={city}
-            loading={loading}
-          />
+          {loading ? (
+            <div style={{textAlign: 'center', padding: '100px', color: '#64748b'}}>Loading specialists...</div>
+          ) : filteredData.length > 0 ? (
+            <DoctorList doctors={filteredData} />
+          ) : (
+            <div style={{textAlign: 'center', padding: '100px', color: '#64748b'}}>
+              <h3>No doctors found matching your criteria.</h3>
+            </div>
+          )}
         </div>
       </div>
     </>

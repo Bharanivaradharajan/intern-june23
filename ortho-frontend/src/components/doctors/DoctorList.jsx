@@ -1,43 +1,132 @@
-import React from "react";
-import DoctorCard from "./DoctorCard";
-import SkeletonDoctorCard from "./SkeletonDoctorCard";
+import React, { useState, useEffect } from "react";
 
-const DoctorList = ({ data, search, city, loading }) => {
-  if (loading) {
-    return (
-      <div className="resource-grid">
-        {[...Array(6)].map((_, i) => (
-          <SkeletonDoctorCard key={i} />
-        ))}
-      </div>
-    );
-  }
+const DoctorList = ({ doctors }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const doctorsPerPage = 10; // 10 doctors per page
 
-  const filtered = data.filter((doc) => {
-    const matchesSearch =
-      doc.name.toLowerCase().includes(search.toLowerCase()) ||
-      doc.specialization.toLowerCase().includes(search.toLowerCase());
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [doctors]);
 
-    const matchesCity = city === "All" || doc.city === city;
-
-    return matchesSearch && matchesCity;
-  });
-
-  if (!filtered.length) {
-    return (
-      <div className="empty-state">
-        <span>🧑‍⚕️</span>
-        <h4>No doctors found</h4>
-        <p>Try changing search or city filter.</p>
-      </div>
-    );
-  }
+  const indexOfLastDoctor = currentPage * doctorsPerPage;
+  const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
+  const currentDoctors = doctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
+  const totalPages = Math.ceil(doctors.length / doctorsPerPage);
 
   return (
-    <div className="resource-grid">
-      {filtered.map((doc) => (
-        <DoctorCard key={doc.id} doctor={doc} />
-      ))}
+    <div>
+      <style>{`
+        .resource-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 24px;
+        }
+
+        .resource-card {
+          background: #ffffff;
+          border-radius: 16px;
+          border: 1px solid #e2e8f0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.2s;
+        }
+
+        .resource-card:hover { transform: translateY(-4px); }
+
+        .doctor-image-wrapper {
+          width: 100%;
+          height: 320px;
+          background: #f1f5f9;
+        }
+
+        .doctor-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top;
+        }
+
+        .card-content { padding: 20px; }
+        .doc-name { font-size: 19px; font-weight: 700; color: #0f172a; margin: 0; }
+        .doc-spec { color: #0284c7; font-size: 14px; font-weight: 600; margin: 6px 0 16px 0; }
+        .doc-info { color: #475569; font-size: 13px; margin: 5px 0; line-height: 1.4; }
+
+        /* PAGINATION VISIBILITY FIX */
+        .pagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          margin-top: 50px;
+          padding-bottom: 30px;
+        }
+
+        .pagination button {
+          min-width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: 1px solid #cbd5e1;
+          background: #ffffff;
+          color: #0f172a !important; /* Visible numbers */
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pagination button:hover {
+          background: #f1f5f9;
+          border-color: #0284c7;
+        }
+
+        .pagination button.active {
+          background: #0284c7;
+          color: #ffffff !important; /* White number on blue */
+          border-color: #0284c7;
+        }
+      `}</style>
+
+      <div className="resource-grid">
+        {currentDoctors.map((doc) => (
+          <div key={doc.id} className="resource-card">
+            <div className="doctor-image-wrapper">
+              <img 
+                src={doc.imageUrl} 
+                alt={doc.name} 
+                className="doctor-card-img"
+                onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=Profile+Photo"; }}
+              />
+            </div>
+            <div className="card-content">
+              <h4 className="doc-name">{doc.name}</h4>
+              <p className="doc-spec">{doc.speciality}</p>
+              <div className="doc-info"><strong>Hospital:</strong> {doc.hospital}</div>
+              <div className="doc-info"><strong>Location:</strong> {doc.city}</div>
+              <div className="doc-info"><strong>Exp:</strong> {doc.experience}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => {
+                setCurrentPage(i + 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={currentPage === i + 1 ? "active" : ""}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
