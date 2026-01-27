@@ -7,7 +7,7 @@ const implantsData = [
     description:
       "Specialized implants and instruments designed for fracture fixation and orthopedic reconstruction in animals.",
     image: "/src/assets/implants/veterinary-implants-instruments.jpg",
-    viewUrl: "https://www.orthopaedic-implants.com/",
+    viewUrl: "https://www.orthopaedic-implants.com/veterinary-implants-and-instruments/index.php",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const implantsData = [
     description:
       "Arthroscopic tools and implants commonly used for ligament reconstruction and sports injury management.",
     image: "/src/assets/implants/arthroscopy-acl-pcl.jpg",
-    viewUrl: "/implants/arthroscopy-acl-pcl",
+    viewUrl: "https://www.orthopaedic-implants.com/arthroscopy-acl-pcl/index.php",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const implantsData = [
     description:
       "Cable plate systems are used for stable fixation in complex fractures and periprosthetic reconstructions.",
     image: "/src/assets/implants/cable-plate-system.jpg",
-    viewUrl: "/implants/cable-plate-system",
+    viewUrl: "https://www.orthopaedic-implants.com/cable-plate-system/index.php",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const implantsData = [
     description:
       "Implants designed for facial bone fixation, cranial reconstruction, and maxillofacial trauma procedures.",
     image: "/src/assets/implants/craniomaxillofacial-implants.jpg",
-    viewUrl: "/implants/craniomaxillofacial-implants",
+    viewUrl: "https://www.orthopaedic-implants.com/craniomaxillofacial/index.php",
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ const implantsData = [
     description:
       "Dynamic Hip Screw (DHS) and Dynamic Condylar Screw (DCS) systems used for stable fracture fixation in hip and pediatric cases.",
     image: "/src/assets/implants/dhs-dcs-pediatric.jpg",
-    viewUrl: "/implants/dhs-dcs-pediatric",
+    viewUrl: "https://www.orthopaedic-implants.com/dhs-dcs-angled-blade-plates/hip-fixation-plates/index.php",
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const implantsData = [
     description:
       "External fixators provide fracture stabilization, lengthening support, and temporary fixation in severe trauma cases.",
     image: "/src/assets/implants/external-fixators.jpg",
-    viewUrl: "/implants/external-fixators",
+    viewUrl: "https://www.orthopaedic-implants.com/external-fixators/external-fixation-system/index.php",
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ const implantsData = [
     description:
       "A complete range of essential orthopedic instruments used across trauma, reconstruction, and joint procedures.",
     image: "/src/assets/implants/general-instruments.jpg",
-    viewUrl: "/implants/general-instruments",
+    viewUrl: "https://www.orthopaedic-implants.com/general-instruments-bone-drill/orthopedic-instruments/index.php",
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ const implantsData = [
     description:
       "Headless cannulated screws provide compression fixation commonly used in scaphoid, ankle, and small bone procedures.",
     image: "/src/assets/implants/headless-compression-cannulated-screws.jpg",
-    viewUrl: "/implants/headless-compression-cannulated-screws",
+    viewUrl: "https://www.orthopaedic-implants.com/cannulated-screws/index.php",
   },
   {
     id: 9,
@@ -87,7 +87,7 @@ const implantsData = [
     description:
       "Hip prosthesis systems used for joint replacement in severe arthritis, fractures, or degenerative hip conditions.",
     image: "/src/assets/implants/hip-prosthesis.jpg",
-    viewUrl: "/implants/hip-prosthesis",
+    viewUrl: "https://www.orthopaedic-implants.com/hip-prosthesis/index.php",
   },
   {
     id: 10,
@@ -97,7 +97,7 @@ const implantsData = [
     description:
       "Instrument set used for safe and efficient removal of plates, screws, nails, and other orthopedic implants.",
     image: "/src/assets/implants/implants-removal-set.jpg",
-    viewUrl: "/implants/implants-removal-set",
+    viewUrl: "https://www.orthopaedic-implants.com/implants-removal-section/index.php",
   },
   {
     id: 11,
@@ -107,7 +107,7 @@ const implantsData = [
     description:
       "Interlocking nail systems provide stable fixation for long bone fractures such as femur, tibia, and humerus.",
     image: "/src/assets/implants/interlocking-nails.jpg",
-    viewUrl: "/implants/interlocking-nails",
+    viewUrl: "https://www.orthopaedic-implants.com/interlocking-nails/index.php",
   },
   {
     id: 12,
@@ -117,7 +117,7 @@ const implantsData = [
     description:
       "Knee osteotomy plates are used to correct alignment and support fixation during osteotomy procedures.",
     image: "/src/assets/implants/knee-osteotomy-plates.jpg",
-    viewUrl: "/implants/knee-osteotomy-plates",
+    viewUrl: "https://www.orthopaedic-implants.com/knee-osteotomy-plates-system/index.php",
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ const implantsData = [
     description:
       "Locking plate systems for stable fixation in femur and tibia fractures with improved strength and alignment control.",
     image: "/src/assets/implants/large-fragment-safety-locking.jpg",
-    viewUrl: "/implants/large-fragment-safety-locking",
+    viewUrl: "https://www.orthopaedic-implants.com/large-fragment-locking-implants/safety-locking-implants/index.php",
   },
   {
     id: 14,
@@ -137,7 +137,7 @@ const implantsData = [
     description:
       "Standard large fragment plating system commonly used for adult long bone fractures and trauma cases.",
     image: "/src/assets/implants/large-fragment-standard.jpg",
-    viewUrl: "/implants/large-fragment-standard",
+    viewUrl: "https://www.orthopaedic-implants.com/large-fragment-implants-instruments/standard-implants/index.php",
   },
   {
     id: 15,
@@ -147,7 +147,7 @@ const implantsData = [
     description:
       "Mini fragment systems are designed for precise fixation in hand, wrist, and foot fractures.",
     image: "/src/assets/implants/mini-fragment-implants.jpg",
-    viewUrl: "/implants/mini-fragment-implants",
+    viewUrl: "https://www.orthopaedic-implants.com/mini-fragment-implants-instruments/index.php",
   },
   {
     id: 16,
@@ -157,7 +157,7 @@ const implantsData = [
     description:
       "A range of fixation wires and pins used in pediatric trauma, small bone fractures, and temporary stabilization.",
     image: "/src/assets/implants/nails-wires-pins.jpg",
-    viewUrl: "/implants/nails-wires-pins",
+    viewUrl: "https://www.orthopaedic-implants.com/nails-wires-pins/index.php",
   },
   {
     id: 17,
@@ -167,7 +167,7 @@ const implantsData = [
     description:
       "Pediatric orthopedic implants designed specifically for growing bones, ensuring stability and safe healing.",
     image: "/src/assets/implants/pediatric-implants.jpg",
-    viewUrl: "/implants/pediatric-implants",
+    viewUrl: "https://www.orthopaedic-implants.com/pediatric-implants/index.php",
   },
   {
     id: 18,
@@ -177,7 +177,7 @@ const implantsData = [
     description:
       "Pelvic implants and specialized instruments for acetabular fractures and complex pelvic reconstruction procedures.",
     image: "/src/assets/implants/pelvic-implants-instruments.jpg",
-    viewUrl: "/implants/pelvic-implants-instruments",
+    viewUrl: "https://www.orthopaedic-implants.com/pelvic-implants-and-instruments/index.php",
   },
   {
     id: 19,
@@ -187,7 +187,7 @@ const implantsData = [
     description:
       "Dedicated implants used for rib stabilization and specialized foot fracture reconstruction procedures.",
     image: "/src/assets/implants/rib-foot-implants.jpg",
-    viewUrl: "/implants/rib-foot-implants",
+    viewUrl: "https://www.orthopaedic-implants.com/rib-pelvic-foot/index.php",
   },
   {
     id: 20,
@@ -197,7 +197,7 @@ const implantsData = [
     description:
       "Small fragment locking plates offer angular stability and are widely used in radius, ulna, and ankle fractures.",
     image: "/src/assets/implants/small-fragment-locking.jpg",
-    viewUrl: "/implants/small-fragment-locking",
+    viewUrl: "https://www.orthopaedic-implants.com/small-fragment-locking/safety-locking-implants/index.php",
   },
   {
     id: 21,
@@ -207,7 +207,7 @@ const implantsData = [
     description:
       "Standard small fragment plating instruments used for stable fixation in common orthopedic trauma surgeries.",
     image: "/src/assets/implants/small-fragment-standard.jpg",
-    viewUrl: "/implants/small-fragment-standard",
+    viewUrl: "https://www.orthopaedic-implants.com/small-fragment-system/standard-implants/index.php",
   },
   {
     id: 22,
@@ -217,7 +217,7 @@ const implantsData = [
     description:
       "Spinal implant systems including rods and screws used for fusion, deformity correction, and stabilization procedures.",
     image: "/src/assets/implants/spine-surgery-implants.jpg",
-    viewUrl: "/implants/spine-surgery-implants",
+    viewUrl: "https://www.orthopaedic-implants.com/spine-surgery/index.php",
   },
   {
     id: 23,
@@ -227,7 +227,7 @@ const implantsData = [
     description:
       "Orthopedic braces and supports help improve stability, reduce pain, and assist recovery during rehabilitation.",
     image: "/src/assets/implants/support-braces.jpg",
-    viewUrl: "/implants/support-braces",
+    viewUrl: "https://www.orthopaedic-implants.com/support-and-braces/index.php",
   },
   {
     id: 24,
@@ -237,7 +237,7 @@ const implantsData = [
     description:
       "Powered orthopedic surgical tools used for drilling, cutting, and preparation during trauma and reconstruction surgeries.",
     image: "/src/assets/implants/surgical-power-tools.jpg",
-    viewUrl: "/implants/surgical-power-tools",
+    viewUrl: "https://www.orthopaedic-implants.com/surgical-power-tools/bone-drill-saw-system/index.php",
   },
 ];
 

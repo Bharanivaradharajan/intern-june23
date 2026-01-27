@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DoctorList = ({ doctors }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const doctorsPerPage = 10; // 10 doctors per page
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentPage(1);
@@ -12,6 +15,24 @@ const DoctorList = ({ doctors }) => {
   const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
   const currentDoctors = doctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
   const totalPages = Math.ceil(doctors.length / doctorsPerPage);
+
+  // ✅ Redirect handler (added)
+  const handleDoctorClick = (doc) => {
+    // ✅ External website/profile link
+    if (doc.viewUrl) {
+      window.open(doc.viewUrl, "_blank");
+      return;
+    }
+
+    // ✅ Internal route
+    if (doc.slug) {
+      navigate(`/doctors/${doc.slug}`);
+      return;
+    }
+
+    // ✅ Fallback
+    // (No redirect field provided)
+  };
 
   return (
     <div>
@@ -30,6 +51,8 @@ const DoctorList = ({ doctors }) => {
           display: flex;
           flex-direction: column;
           transition: transform 0.2s;
+
+          cursor: pointer; /* ✅ added */
         }
 
         .resource-card:hover { transform: translateY(-4px); }
@@ -91,21 +114,35 @@ const DoctorList = ({ doctors }) => {
 
       <div className="resource-grid">
         {currentDoctors.map((doc) => (
-          <div key={doc.id} className="resource-card">
+          <div
+            key={doc.id}
+            className="resource-card"
+            onClick={() => handleDoctorClick(doc)}  /* ✅ added */
+            title="Click to view doctor profile"    /* ✅ optional */
+          >
             <div className="doctor-image-wrapper">
-              <img 
-                src={doc.imageUrl} 
-                alt={doc.name} 
+              <img
+                src={doc.imageUrl}
+                alt={doc.name}
                 className="doctor-card-img"
-                onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=Profile+Photo"; }}
+                onError={(e) => {
+                  e.target.src =
+                    "https://via.placeholder.com/300x400?text=Profile+Photo";
+                }}
               />
             </div>
             <div className="card-content">
               <h4 className="doc-name">{doc.name}</h4>
               <p className="doc-spec">{doc.speciality}</p>
-              <div className="doc-info"><strong>Hospital:</strong> {doc.hospital}</div>
-              <div className="doc-info"><strong>Location:</strong> {doc.city}</div>
-              <div className="doc-info"><strong>Exp:</strong> {doc.experience}</div>
+              <div className="doc-info">
+                <strong>Hospital:</strong> {doc.hospital}
+              </div>
+              <div className="doc-info">
+                <strong>Location:</strong> {doc.city}
+              </div>
+              <div className="doc-info">
+                <strong>Exp:</strong> {doc.experience}
+              </div>
             </div>
           </div>
         ))}
@@ -118,7 +155,7 @@ const DoctorList = ({ doctors }) => {
               key={i + 1}
               onClick={() => {
                 setCurrentPage(i + 1);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
               className={currentPage === i + 1 ? "active" : ""}
             >
