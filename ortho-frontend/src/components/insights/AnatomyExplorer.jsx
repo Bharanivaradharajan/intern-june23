@@ -4,6 +4,20 @@ const AnatomyExplorer = ({ regions = [], selectedRegionId, onSelectRegion }) => 
   return (
     <>
       <style>{`
+      /* ... inside <style> ... */
+@media (max-width: 480px) {
+  .anatomy {
+    height: 280px; /* Shorter on mobile */
+  }
+  .silhouette-body {
+    width: 140px;
+    height: 220px;
+  }
+  .pill {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+}
         .anatomy {
           position: relative;
           border-radius: 18px;

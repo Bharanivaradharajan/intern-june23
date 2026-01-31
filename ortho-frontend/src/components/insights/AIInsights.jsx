@@ -25,6 +25,26 @@ const AIInsights = ({ filters, aiCards = [], totals }) => {
   return (
     <>
       <style>{`
+      /* ... inside <style> ... */
+.ai-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Added for mobile */
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+@media (max-width: 600px) {
+  .ai-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+    gap: 8px;
+  }
+  .ai-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
         .ai-wrap {
           display: flex;
           flex-direction: column;

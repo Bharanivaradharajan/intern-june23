@@ -6,6 +6,18 @@ const SmartFilterLens = ({ filters, setFilters, topics = [] }) => {
   return (
     <>
       <style>{`
+      /* ... inside <style> ... */
+@media (max-width: 768px) {
+  .lens {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-radius: 14px;
+  }
+}
         .lens {
   position: fixed;
   right: 18px;

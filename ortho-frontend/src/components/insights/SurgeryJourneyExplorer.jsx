@@ -143,6 +143,21 @@ const SurgeryJourneyExplorer = ({ surgeries = [], selectedSurgeryId, onSelectSur
             grid-template-columns: 1fr;
           }
         }
+          /* ... inside <style> ... */
+.journey-wrap {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 768px) {
+  .journey-wrap {
+    grid-template-columns: 1fr; /* Stacked */
+  }
+  .mini-grid {
+    grid-template-columns: 1fr; /* Stack internal boxes */
+  }
+}
       `}</style>
 
       <div className="journey-wrap">

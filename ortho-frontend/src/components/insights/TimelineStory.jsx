@@ -4,6 +4,17 @@ const TimelineStory = ({ timeline = [] }) => {
   return (
     <>
       <style>{`
+      /* ... inside <style> ... */
+.cards-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none; /* Firefox */
+}
+.cards-row::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
         .timeline {
           display: flex;
           flex-direction: column;

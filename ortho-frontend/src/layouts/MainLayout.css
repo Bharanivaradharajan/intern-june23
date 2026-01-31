@@ -3,14 +3,14 @@ body,
 #root {
   height: 100%;
   margin: 0;
-  background: #f9fbfd; /* ADD THIS */
+  background: #f9fbfd; 
 }
 
 .layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f9fbfd; /* ADD THIS */
+  background: #f9fbfd; 
 }
 
 .content {

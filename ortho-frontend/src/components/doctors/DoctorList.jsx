@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const DoctorList = ({ doctors }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const doctorsPerPage = 10; // 10 doctors per page
+  const doctorsPerPage = 10;
 
   const navigate = useNavigate();
 
@@ -16,27 +16,21 @@ const DoctorList = ({ doctors }) => {
   const currentDoctors = doctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
   const totalPages = Math.ceil(doctors.length / doctorsPerPage);
 
-  // ✅ Redirect handler (added)
   const handleDoctorClick = (doc) => {
-    // ✅ External website/profile link
     if (doc.viewUrl) {
       window.open(doc.viewUrl, "_blank");
       return;
     }
-
-    // ✅ Internal route
     if (doc.slug) {
       navigate(`/doctors/${doc.slug}`);
       return;
     }
-
-    // ✅ Fallback
-    // (No redirect field provided)
   };
 
   return (
     <div>
       <style>{`
+        /* Desktop Grid */
         .resource-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -50,17 +44,20 @@ const DoctorList = ({ doctors }) => {
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: transform 0.2s;
-
-          cursor: pointer; /* ✅ added */
+          transition: transform 0.2s, box-shadow 0.2s;
+          cursor: pointer;
         }
 
-        .resource-card:hover { transform: translateY(-4px); }
+        .resource-card:hover { 
+          transform: translateY(-4px); 
+          box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
 
         .doctor-image-wrapper {
           width: 100%;
           height: 320px;
           background: #f1f5f9;
+          overflow: hidden;
         }
 
         .doctor-card-img {
@@ -70,12 +67,11 @@ const DoctorList = ({ doctors }) => {
           object-position: top;
         }
 
-        .card-content { padding: 20px; }
+        .card-content { padding: 20px; flex-grow: 1; }
         .doc-name { font-size: 19px; font-weight: 700; color: #0f172a; margin: 0; }
         .doc-spec { color: #0284c7; font-size: 14px; font-weight: 600; margin: 6px 0 16px 0; }
         .doc-info { color: #475569; font-size: 13px; margin: 5px 0; line-height: 1.4; }
 
-        /* PAGINATION VISIBILITY FIX */
         .pagination {
           display: flex;
           justify-content: center;
@@ -91,24 +87,70 @@ const DoctorList = ({ doctors }) => {
           border-radius: 8px;
           border: 1px solid #cbd5e1;
           background: #ffffff;
-          color: #0f172a !important; /* Visible numbers */
+          color: #0f172a !important;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.2s;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .pagination button:hover {
-          background: #f1f5f9;
-          border-color: #0284c7;
         }
 
         .pagination button.active {
           background: #0284c7;
-          color: #ffffff !important; /* White number on blue */
+          color: #ffffff !important;
           border-color: #0284c7;
+        }
+
+        /* =========================
+           MOBILE RESPONSIVE GRID (2-Column)
+        ========================= */
+        @media (max-width: 768px) {
+          .resource-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            padding: 10px;
+          }
+
+          .doctor-image-wrapper {
+            height: 180px; /* Shorter images for mobile grid */
+          }
+
+          .card-content {
+            padding: 12px;
+          }
+
+          .doc-name {
+            font-size: 14px;
+            /* Clamp to 1 line for alignment */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .doc-spec {
+            font-size: 12px;
+            margin: 4px 0 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .doc-info {
+            font-size: 11px;
+            margin: 2px 0;
+          }
+
+          .doc-info strong {
+            display: none; /* Hide labels like "Hospital:" to save space */
+          }
+
+          .pagination {
+            gap: 4px;
+          }
+
+          .pagination button {
+            min-width: 32px;
+            height: 32px;
+            font-size: 12px;
+          }
         }
       `}</style>
 
@@ -117,8 +159,7 @@ const DoctorList = ({ doctors }) => {
           <div
             key={doc.id}
             className="resource-card"
-            onClick={() => handleDoctorClick(doc)}  /* ✅ added */
-            title="Click to view doctor profile"    /* ✅ optional */
+            onClick={() => handleDoctorClick(doc)}
           >
             <div className="doctor-image-wrapper">
               <img

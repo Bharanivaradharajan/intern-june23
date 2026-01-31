@@ -11,15 +11,35 @@
 }
 
 /* =========================
-   TABS
+   STICKY CONTROLS
+========================= */
+.resource-controls {
+  position: sticky;
+  top: 0;
+  background: #f9fbfd;
+  padding: 16px 0;
+  z-index: 100; /* High z-index to stay above cards */
+}
+
+/* =========================
+   TABS (Swipeable on Mobile)
 ========================= */
 .resource-tabs {
   display: flex;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 20px;
+  overflow-x: auto; /* Enable horizontal swipe */
+  padding-bottom: 8px; /* Space for hidden scrollbar */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars but keep functionality */
+.resource-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .resource-tabs button {
+  white-space: nowrap; /* Prevents text wrapping */
   font-family: "Space Grotesk", sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -31,11 +51,7 @@
   cursor: pointer;
   color: var(--text-main);
   transition: all 0.3s ease;
-}
-
-.resource-tabs button:hover {
-  border-color: var(--accent);
-  color: var(--accent-dark);
+  flex-shrink: 0; /* Prevents buttons from squishing */
 }
 
 .resource-tabs .active {
@@ -46,231 +62,54 @@
 }
 
 /* =========================
-   SEARCH
+   SEARCH & SORT ROW
 ========================= */
-.resource-search {
-  width: 100%;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 14px;
-  padding: 14px 16px;
-  margin-bottom: 32px;
-  border-radius: 14px;
-  border: 1px solid var(--border-soft);
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  outline: none;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-.resource-search::placeholder {
-  color: var(--text-muted);
-}
-
-.resource-search:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
-}
-
-/* =========================
-   GRID
-========================= */
-.resource-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-/* =========================
-   CARD
-========================= */
-.resource-card {
-  font-family: "Space Grotesk", sans-serif;
-  padding: 20px;
-  border-radius: 18px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--border-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.resource-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(56, 189, 248, 0.15),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.resource-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
-}
-
-.resource-card:hover::before {
-  opacity: 1;
-}
-
-/* Title */
-.resource-card h4 {
-  font-size: 17px;
-  font-weight: 600;
-  margin: 14px 0 8px;
-  color: var(--text-main);
-  line-height: 1.3;
-}
-
-/* Subtitle / Author */
-.resource-card p {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0 0 6px;
-}
-
-/* Meta */
-.resource-card small {
-  font-size: 12px;
-  color: #94a3b8;
-}
-
-/* =========================
-   BADGE
-========================= */
-.badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--accent-dark);
-  display: inline-block;
-  letter-spacing: 0.4px;
-}
-/* Book Image */
-.book-image-wrapper {
-  width: 100%;
-  height: 200px;              /* ✅ fixed height */
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 12px;
-  background: #f1f5f9;
-  display: flex;              /* ✅ ensures full stretch */
-  align-items: center;
-  justify-content: center;
-}
-
-.book-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;          /* ✅ fills full box */
-  display: block;
-}
-
-.resource-card:hover .book-image {
-  transform: scale(1.05);
-}
-.resource-card.clickable {
-  cursor: pointer;
-}
-
-.resource-card.clickable:focus {
-  outline: 2px solid #38bdf8;
-  outline-offset: 3px;
-}
-/* STICKY CONTROLS */
-.resource-controls {
-  position: sticky;
-  top: 0;
-  background: #f9fbfd;
-  padding-bottom: 16px;
-  z-index: 10;
-}
-
 .resource-controls-row {
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
 }
 
-/* SORT */
-.resource-sort {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
+.resource-search {
+  flex: 1; /* Takes remaining space */
   font-family: "Space Grotesk", sans-serif;
-}
-
-/* HOVER CTA */
-.card-cta {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #0284c7;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.resource-card:hover .card-cta {
-  opacity: 1;
-}
-
-/* EMPTY STATE */
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: #64748b;
-}
-
-.empty-state span {
-  font-size: 32px;
-}
-
-/* SKELETON */
-.skeleton {
-  pointer-events: none;
-}
-
-.skeleton-box {
-  height: 160px;
+  font-size: 14px;
+  color: #0f172a;
+  padding: 12px 16px;
   border-radius: 12px;
-  background: #e5e7eb;
-  margin-bottom: 12px;
+  border: 1px solid var(--border-soft);
+  background: var(--glass-bg);
+  outline: none;
 }
 
-.skeleton-line {
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 6px;
-  margin-bottom: 8px;
+.resource-sort {
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  font-family: "Space Grotesk", sans-serif;
+  background: white;
+  font-size: 13px;
 }
 
-.skeleton-line.short {
-  width: 60%;
-}
+/* =========================
+   GRID & CARDS
+========================= */
 .resource-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
+  padding-bottom: 40px;
 }
 
-/* CARD */
 .resource-card {
   position: relative;
   padding: 18px;
   border-radius: 18px;
   background: white;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--border-soft);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .resource-card:hover {
@@ -278,12 +117,12 @@
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
 }
 
-/* BOOK IMAGE */
 .book-image-wrapper {
   height: 180px;
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 12px;
+  background: #f1f5f9;
 }
 
 .book-image-wrapper img {
@@ -292,14 +131,28 @@
   object-fit: cover;
 }
 
-/* CTA */
+.resource-card h4 {
+  font-size: 17px;
+  margin: 12px 0 6px;
+  line-height: 1.4;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-dark);
+}
+
 .card-cta {
   position: absolute;
   bottom: 16px;
   right: 16px;
   font-size: 13px;
-  font-weight: 600;
-  color: #0284c7;
+  font-weight: 700;
+  color: var(--accent-dark);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -308,29 +161,124 @@
   opacity: 1;
 }
 
-/* EMPTY STATE */
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: #64748b;
-}
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
 
-/* SKELETON */
-.skeleton-box {
-  height: 160px;
-  background: #e5e7eb;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
+/* =========================
+   AMAZON-STYLE MOBILE GRID
+========================= */
+/* =========================
+   FORCE 2-COLUMN GRID (Amazon Style)
+========================= */
 
-.skeleton-line {
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
+@media (max-width: 768px) {
+  /* Ensure the grid container doesn't have horizontal overflow */
+  .resource-grid {
+    display: grid !important;
+    /* This forces exactly two columns of equal width */
+    grid-template-columns: 1fr 1fr !important; 
+    gap: 12px !important;
+    padding: 10px !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-.skeleton-line.short {
-  width: 60%;
-}
+  /* Adjust Card size for the 2-column layout */
+  .resource-card {
+    padding: 10px !important;
+    min-width: 0; /* Prevents card from pushing grid boundaries */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
 
+  .book-image-wrapper {
+    height: 140px !important; /* Shorter image for mobile balance */
+    margin-bottom: 8px;
+  }
+
+  /* Typography adjustments to prevent text-heavy cards */
+  .resource-card h4 {
+    font-size: 13px !important;
+    line-height: 1.2;
+    margin: 4px 0;
+    /* Clamping text to 2 lines like Amazon */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .resource-card p {
+    font-size: 11px !important;
+    margin-bottom: 4px;
+  }
+
+  /* Always show CTA on mobile since there is no hover */
+  .card-cta {
+    position: static !important;
+    opacity: 1 !important;
+    font-size: 11px;
+    text-align: right;
+    margin-top: 5px;
+  }
+}
+@media (max-width: 768px) {
+  /* 1. SEARCH BOX VISIBILITY FIX */
+  .resource-search {
+    color: #0f172a !important; /* Forces text to be dark slate */
+    background: #ffffff !important; /* Solid background for better contrast on mobile */
+    font-size: 16px !important; /* Prevents iOS from zooming in on focus */
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+    border: 1.5px solid #e2e8f0 !important;
+  }
+
+  /* Ensure placeholder is visible */
+  .resource-search::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1;
+  }
+
+  /* 2. FILTER/SORT ALIGNMENT FIX */
+  .resource-controls-row {
+    display: flex !important;
+    flex-direction: column !important; /* Stacks Search then Sort */
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  .resource-sort {
+    width: 100% !important;
+    height: 48px !important; /* Larger touch target for mobile */
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 1.5px solid #e2e8f0 !important;
+    font-size: 14px !important;
+    appearance: none; /* Removes default browser styling */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.65rem auto;
+  }
+
+  /* 3. TABS ADJUSTMENT */
+  .resource-tabs {
+    margin-top: 10px;
+    padding-bottom: 5px;
+  }
+}
+/* Extra Small Screens (Narrow phones) */
+@media (max-width: 380px) {
+  .resource-grid {
+    gap: 8px;
+  }
+  .book-image-wrapper {
+    height: 110px;
+  }
+  .resource-card h4 {
+    font-size: 12px;
+  }
+}

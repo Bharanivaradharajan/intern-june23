@@ -171,6 +171,18 @@ const SwipeCards = ({ cards = [], savedCardIds = [], onSave, onRemove }) => {
           border: 1px solid rgba(239,68,68,0.18);
           color: rgba(239,68,68,0.95);
         }
+          /* ... inside <style> ... */
+@media (max-width: 480px) {
+  .deck {
+    height: 300px;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .btn {
+    padding: 12px; /* Larger touch targets */
+  }
+}
       `}</style>
 
       <div className="swipe-wrap">

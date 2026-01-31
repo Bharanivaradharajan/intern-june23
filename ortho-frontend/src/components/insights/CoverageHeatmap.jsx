@@ -15,6 +15,17 @@ const CoverageHeatmap = ({ heatmap, onSelectCell }) => {
   return (
     <>
       <style>{`
+
+      /* ... inside <style> ... */
+.heatmap-wrap {
+  width: 100%;
+  overflow-x: auto; /* Keeps it swipeable */
+  -webkit-overflow-scrolling: touch;
+}
+
+.heatmap-grid {
+  min-width: 600px; /* Prevents squishing */
+}
         .heatmap-wrap {
           width: 100%;
           overflow-x: auto;

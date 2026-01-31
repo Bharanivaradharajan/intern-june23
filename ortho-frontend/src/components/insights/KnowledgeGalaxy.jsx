@@ -162,6 +162,21 @@ const KnowledgeGalaxy = ({
             grid-template-columns: 1fr;
           }
         }
+          /* ... inside <style> ... */
+.galaxy-wrap {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .galaxy-wrap {
+    grid-template-columns: 1fr; /* Stacked */
+  }
+  .galaxy-board {
+    height: 300px;
+  }
+}
       `}</style>
 
       <div className="galaxy-wrap">

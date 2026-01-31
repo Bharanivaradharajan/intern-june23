@@ -9,7 +9,7 @@ const tocItems = [
   { id: "application", label: "Application Insights" },
   { id: "regional", label: "Regional Insights" },
 
-  // ✅ Bone Cement added inside same page
+  
   { id: "bone-divider", label: "Bone Cement Market (Start)" },
   { id: "bone-overview", label: "Bone Cement Market Overview" },
   { id: "bone-types", label: "Bone Cement Types" },
